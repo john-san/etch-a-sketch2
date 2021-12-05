@@ -21,3 +21,18 @@
   flex-grow: 1;
 }
 
+.cell:nth-child(n+2) {
+  border-left: 0;
+}
+
+.row:nth-child(odd) .cell {
+  border-bottom: 0;
+}
+
+.row:nth-child(even) .cell {
+  border-bottom: 0;
+}
+
+.row:last-child .cell {
+  border-bottom: solid 1px black;
+}

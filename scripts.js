@@ -31,6 +31,10 @@ function createGrid(size) {
   }
 }
 
+function clearGrid() {
+  container.replaceChildren();
+}
+
 function addClass(el, ...classNames) {
   classNames.forEach((className) => {
     el.classList.add(className)
