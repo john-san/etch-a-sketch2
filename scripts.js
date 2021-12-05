@@ -20,6 +20,17 @@ function setBgColor(el, color) {
   el.setAttribute('style', `background-color: ${color}`);
 }
 
+function randomNumber(min, max) { 
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+} 
+
+function getRandomColor() {
+  return `rgb(${randomNumber(0,255)}, ${randomNumber(0,255)}, ${randomNumber(0,255)})`;
+}
+
+
 // Grid creation
 const gridContainer = document.createElement('div');
 gridContainer.classList.add('gridContainer');
@@ -77,7 +88,8 @@ gridContainer.addEventListener('mouseover', (e) => {
     } else if (state.mode == 'Erase') {
       setBgColor(cell, 'none');
     } else if (state.mode == 'Rainbow') {
-      setBgColor(cell, 'red');
+      const randomColor = getRandomColor();
+      setBgColor(cell, randomColor);
     }
   }
   
