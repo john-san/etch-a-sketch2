@@ -46,14 +46,32 @@
 }
 
 /* Range */
+.rngContainer {
+  margin-top: 10px;
+}
+.rngContainer p {
+  margin: 0;
+}
+
 #gridRngSlider {
-  /* -webkit-appearance: none; */
+  -webkit-appearance: none;
   opacity: 2;
-  height: 20px;
-  width: 250px;
-  /* background: red; */
+  height: 5px;
+  width: 125px;
+  background: rgba(255,255,255,0.25);
+  border: solid black 1px;
+  border-radius: 8px;
 }
 
 #gridRngSlider:hover {
   opacity: 1;
+}
+#gridRngSlider::-webkit-slider-thumb {
+  background-color: blue;
+  /* -webkit-appearance: none; */
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  /* border: solid 1px black; */
+  border-radius: 100%;
 }
