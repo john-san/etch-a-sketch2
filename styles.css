@@ -1,12 +1,23 @@
+.container {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .row {
+  width: 600px;
   display: flex;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .cell {
-    background: red;
-    width: 10px;
-    height: 10px;
-    border: solid black 1px;
+  /* background: red; */
+  /* width: 20px; */
+  /* height: 20px; */
+  border: solid black 1px;
+  flex-grow: 1;
 }
+

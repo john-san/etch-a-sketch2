@@ -17,7 +17,7 @@ function createCell() {
 function createRow(length) {
   const rowContainer = document.createElement('div');
   addClass(rowContainer, 'row');
-  for (i = 0; i < length; i++) {
+  for (j = 0; j < length; j++) {
     const cell = createCell();
     rowContainer.appendChild(cell);
   }
@@ -42,3 +42,5 @@ function removeClass(el, ...classNames) {
     el.classList.remove(className)
   });
 }
+
+createGrid(16);
