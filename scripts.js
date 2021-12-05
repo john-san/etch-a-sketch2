@@ -1,7 +1,7 @@
-const container = document.createElement('div');
-container.classList.add('container');
+const gridContainer = document.createElement('div');
+gridContainer.classList.add('gridContainer');
 
-appendChild(container, 'body');
+appendChild(gridContainer, 'body');
 
 function appendChild(el, parentQuery) {
   const parent = document.querySelector(`${parentQuery}`);
@@ -22,7 +22,7 @@ function createRow(length) {
     rowContainer.appendChild(cell);
   }
   
-  appendChild(rowContainer, '.container');
+  appendChild(rowContainer, '.gridContainer');
 }
 
 function createGrid(size) {
@@ -31,9 +31,17 @@ function createGrid(size) {
   }
 }
 
-function clearGrid() {
-  container.replaceChildren();
+function removeGrid() {
+  gridContainer.replaceChildren();
 }
+
+function clearGrid() {
+  [...gridContainer.children].forEach((row) => {
+    [...row.children].forEach((cell) => removeClass(cell, 'active'));
+  })
+}
+
+
 
 function addClass(el, ...classNames) {
   classNames.forEach((className) => {
@@ -48,3 +56,14 @@ function removeClass(el, ...classNames) {
 }
 
 createGrid(16);
+
+
+gridContainer.addEventListener('mouseover', (e) => {
+  if ([...e.target.classList].includes('cell')) {
+    addClass(e.target, 'active');
+  }
+});
+
+const clearBtn = document.getElementById('clearBtn');
+clearBtn.addEventListener('click', clearGrid);
+
