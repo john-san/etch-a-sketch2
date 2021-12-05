@@ -44,3 +44,16 @@
   text-align: center;
   margin-bottom: 30px;
 }
+
+/* Range */
+#gridRngSlider {
+  /* -webkit-appearance: none; */
+  opacity: 2;
+  height: 20px;
+  width: 250px;
+  /* background: red; */
+}
+
+#gridRngSlider:hover {
+  opacity: 1;
+}
