@@ -1,12 +1,31 @@
-const gridContainer = document.createElement('div');
-gridContainer.classList.add('gridContainer');
+// Helpers
+function addClass(el, ...classNames) {
+  classNames.forEach((className) => {
+    el.classList.add(className)
+  });
+}
 
-appendChild(gridContainer, 'body');
+function removeClass(el, ...classNames) {
+  classNames.forEach((className) => {
+    el.classList.remove(className)
+  });
+}
 
 function appendChild(el, parentQuery) {
   const parent = document.querySelector(`${parentQuery}`);
   parent.appendChild(el);
 }
+
+function setBgColor(el, color) {
+  el.setAttribute('style', `background-color: ${color}`);
+}
+
+// Grid creation
+const gridContainer = document.createElement('div');
+gridContainer.classList.add('gridContainer');
+
+appendChild(gridContainer, 'body');
+
 
 function createCell() {
   const cell = document.createElement('div');
@@ -37,48 +56,76 @@ function removeGrid() {
 
 function clearGrid() {
   [...gridContainer.children].forEach((row) => {
-    [...row.children].forEach((cell) => removeClass(cell, 'active'));
+    [...row.children].forEach((cell) => setBgColor(cell, 'none'));
   })
 }
 
-
-
-function addClass(el, ...classNames) {
-  classNames.forEach((className) => {
-    el.classList.add(className)
-  });
-}
-
-function removeClass(el, ...classNames) {
-  classNames.forEach((className) => {
-    el.classList.remove(className)
-  });
-}
-
 function newGrid() {
-  // const ans = parseInt(prompt('Please enter a number between 16 and 100. (Default: 16)'));
-  // removeGrid();
-  
-  // if (ans >= 16 && ans <= 100) {
-  //   createGrid(ans);  
-  // } else {
-  //   createGrid(16);
-  // }
   removeGrid();
   createGrid(gridRngSlider.value);
 }
 
+// Initialize grid
 createGrid(16);
 
 
 gridContainer.addEventListener('mouseover', (e) => {
-  if ([...e.target.classList].includes('cell')) {
-    addClass(e.target, 'active');
+  const cell = e.target;
+  if (state.pen == true && hoveredOverCell(cell)) {
+    if (state.mode == 'Color') {
+      setBgColor(cell, 'black');
+    } else if (state.mode == 'Erase') {
+      setBgColor(cell, 'none');
+    } else if (state.mode == 'Rainbow') {
+      setBgColor(cell, 'red');
+    }
   }
+  
 });
 
+function hoveredOverCell(cell) {
+  return [...cell.classList].includes('cell');
+}
+
+// State
+let state = {
+  pen: true,
+  mode: 'Color'
+}
+
+function updateState(prop, val) {
+  state[prop] = val;
+  console.log(state);
+}
+
+
+
+// Buttons
 const clearBtn = document.getElementById('clearBtn');
 clearBtn.addEventListener('click', clearGrid);
+
+
+const buttons = [...document.querySelectorAll('button')];
+buttons.forEach((button, idx) => {
+  if (notTheLastBtn(idx)) {
+    button.addEventListener('click', (e) => {
+      removeActiveBtns();
+      e.target.classList.toggle('btn-active');
+      updateState('mode', e.target.textContent);
+    });
+  }
+  
+});
+
+function notTheLastBtn(idx) {
+  return idx + 1 != buttons.length;
+}
+
+function removeActiveBtns() {
+  buttons.forEach((button) => {
+    removeClass(button, 'btn-active');
+  })
+}
 
 // Slider
 const rngContainer = document.querySelector('.rngContainer');

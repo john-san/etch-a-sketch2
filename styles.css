@@ -13,9 +13,6 @@
 }
 
 .cell {
-  /* background: red; */
-  /* width: 20px; */
-  /* height: 20px; */
   border: solid black 1px;
   flex-grow: 1;
 }
@@ -68,10 +65,20 @@
 }
 #gridRngSlider::-webkit-slider-thumb {
   background-color: blue;
-  /* -webkit-appearance: none; */
   cursor: pointer;
   width: 25px;
   height: 25px;
-  /* border: solid 1px black; */
   border-radius: 100%;
+}
+
+/* Buttons */
+.btn {
+  padding: 5px 8px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+.btn-active {
+  background: #5c5c5c;
+  border-radius: 8px;
+  color: white;
 }
