@@ -55,6 +55,18 @@ function removeClass(el, ...classNames) {
   });
 }
 
+function newGrid() {
+  const ans = parseInt(prompt('Please enter a number between 16 and 100. (Default: 16)'));
+  removeGrid();
+  
+  if (ans >= 16 && ans <= 100) {
+    createGrid(ans);  
+  } else {
+    createGrid(16);
+  }
+
+}
+
 createGrid(16);
 
 
@@ -67,3 +79,5 @@ gridContainer.addEventListener('mouseover', (e) => {
 const clearBtn = document.getElementById('clearBtn');
 clearBtn.addEventListener('click', clearGrid);
 
+const newGridBtn = document.getElementById('newGridBtn');
+newGridBtn.addEventListener('click', newGrid);
