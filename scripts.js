@@ -95,6 +95,8 @@ gridContainer.addEventListener('mouseover', (e) => {
   
 });
 
+gridContainer.addEventListener('click', togglePen);
+
 function hoveredOverCell(cell) {
   return [...cell.classList].includes('cell');
 }
@@ -108,6 +110,24 @@ let state = {
 function updateState(prop, val) {
   state[prop] = val;
   console.log(state);
+}
+
+function togglePen() {
+  if (state.pen) {
+    updateState('pen', false);
+  } else {
+    updateState('pen', true);
+  }
+  updatePenUi();
+}
+
+function updatePenUi() {
+  const penStatus = document.getElementById('penStatus');
+  if (state.pen) {
+    penStatus.textContent = 'on';
+  } else {
+    penStatus.textContent = 'off';
+  }
 }
 
 
