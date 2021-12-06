@@ -5,25 +5,35 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+  <script defer src="node_modules/@fortawesome/fontawesome-free/js/brands.min.js"></script>
+  <script defer src="node_modules/@fortawesome/fontawesome-free/js/solid.min.js"></script>
+  <script defer src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js"></script>
   <title>Etch-a-sketch</title>
 </head>
 <body>
   <div class='container'>
     <h1>Etch-a-sketch</h1>
-    <p>Pen: <span id='penStatus'>on</span></p>
-
-    <input type="color" id="colorPicker" name="colorPicker" value="#ff0000">  
-
-    <button class='btn btn-active' id="colorBtn">Color</button>
-    <button class='btn' id="rainbowBtn">Rainbow</button>
-    <button class='btn' id="eraserBtn">Erase</button>
-    <button class='btn' id='clearBtn'>Clear</button>
-    
-    <div class="rngContainer">
-      <input type="range" min="16" max="100" value="16" id="gridRngSlider">
+    <div class='flexContainer'>
+      <div class='controls'>
+        <p>Pen: <span id='penStatus'>on</span></p>
+  
+        <input type="color" id="colorPicker" name="colorPicker" value="#08415C">  
+        <div class='buttons'>
+          <button class='btn btn-active' id="colorBtn">Color</button>
+          <button class='btn' id="rainbowBtn">Rainbow</button>
+          <button class='btn' id="eraserBtn">Erase</button>
+          <button class='btn' id='clearBtn'>Clear</button>
+        </div>
+        
+        
+        <div class="rngContainer">
+          <input type="range" min="16" max="64" value="16" id="gridRngSlider">
+        </div>
+      </div>
     </div>
   </div>
 
-  <script src="scripts.js"></script>
+  <footer><a href="https://github.com/john-san" target="_blank"><i class="fab fa-github-square fa-2x"></i></a></footer>
 </body>
 </html>

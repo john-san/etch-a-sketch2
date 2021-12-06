@@ -35,7 +35,7 @@ function getRandomColor() {
 const gridContainer = document.createElement('div');
 gridContainer.classList.add('gridContainer');
 
-appendChild(gridContainer, 'body');
+appendChild(gridContainer, '.flexContainer');
 
 
 function createCell() {

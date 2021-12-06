@@ -1,19 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Color Theme: https://coolors.co/08415c-cc2936-6b818c-f1bf98-eee5e9 */
+:root {
+  --indigo-dye: #08415C;
+  --madder-lake: #CC2936;
+  --slate-gray: #6B818C;
+  --peach-crayola: #F1BF98;
+  --lavender-bush: #EEE5E9;
+  --grid-border: rgba(124,124,124, 0.1);
+}
+
+h1 {
+  font-size: 60px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: rgb(230, 230, 230);
+  color: var(--indigo-dye);
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  flex: 1 0 auto;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  margin-bottom: 250px;
+}
+
+footer svg {
+  color: var(--slate-gray);
+  transition: transform .1s ease-in-out;
+}
+
+footer svg:hover, footer svg:focus {
+  color: var(--madder-lake);
+  transform: scale(1.1);
+}
+
+.controls {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+}
+
 .gridContainer {
-  height: 600px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .row {
-  width: 600px;
+  width: 400px;
   display: flex;
   justify-content: center;
   flex-grow: 1;
+  background-color: white;
 }
 
 .cell {
-  border: solid black 1px;
+  border: solid 1px var(--grid-border);
   flex-grow: 1;
 }
 
@@ -30,11 +108,7 @@
 }
 
 .row:last-child .cell {
-  border-bottom: solid 1px black;
-}
-
-.active {
-  background: black;
+  border-bottom: solid 1px var(--grid-border);
 }
 
 .container {
@@ -50,10 +124,35 @@
   margin: 0;
 }
 
+/* normalize */
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
 #gridRngSlider {
   -webkit-appearance: none;
   opacity: 2;
-  height: 5px;
+  height: 7px;
   width: 125px;
   background: rgba(255,255,255,0.25);
   border: solid black 1px;
@@ -64,7 +163,7 @@
   opacity: 1;
 }
 #gridRngSlider::-webkit-slider-thumb {
-  background-color: blue;
+  background-color: var(--indigo-dye);
   cursor: pointer;
   width: 25px;
   height: 25px;
@@ -74,11 +173,82 @@
 /* Buttons */
 .btn {
   padding: 5px 8px;
-  border: 1px solid black;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--slate-gray);
+  color: #fff;
+  line-height: 1.5;
+  display: inline-block;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out, transform .15s ease-in-out;  
+  min-width: 75px;
+  font-size: 16px;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+
+.btn-active {
+  background: var(--madder-lake);
   border-radius: 8px;
 }
-.btn-active {
-  background: #5c5c5c;
-  border-radius: 8px;
-  color: white;
+
+/* Color Picker */
+#colorPicker {
+  -webkit-appearance: none;
+  width: 80px;
+  height: 80px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  transition: transform .2s ease-in-out;
+}
+
+#colorPicker:hover {
+  transform: scale(1.1);
+}
+
+input[type=color]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+input[type=color]::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+@media screen and (min-width: 850px) {
+  .flexContainer {
+    flex-direction: row;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    order: 0;
+  }
+
+  .gridContainer {
+    height: 500px;
+  }
+  .gridContainer .row {
+    width: 500px;
+  }
+
+  .btn {
+    min-width: 200px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }
