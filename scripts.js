@@ -84,7 +84,7 @@ gridContainer.addEventListener('mouseover', (e) => {
   const cell = e.target;
   if (state.pen == true && hoveredOverCell(cell)) {
     if (state.mode == 'Color') {
-      setBgColor(cell, 'black');
+      setBgColor(cell, state.color);
     } else if (state.mode == 'Erase') {
       setBgColor(cell, 'none');
     } else if (state.mode == 'Rainbow') {
@@ -104,7 +104,8 @@ function hoveredOverCell(cell) {
 // State
 let state = {
   pen: true,
-  mode: 'Color'
+  mode: 'Color',
+  color: ''
 }
 
 function updateState(prop, val) {
@@ -177,3 +178,16 @@ gridRngSlider.addEventListener('input', () => {
 gridRngSlider.addEventListener('mouseup', () => {
   newGrid();
 });
+
+// ColorPicker
+const colorPicker = document.getElementById('colorPicker');
+function updateColor() {
+  updateState('color', colorPicker.value);
+}
+
+
+colorPicker.addEventListener('change', updateColor);
+
+
+// Initialize color state
+updateColor();
