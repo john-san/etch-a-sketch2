@@ -45,12 +45,12 @@ footer {
   margin-bottom: 250px;
 }
 
-footer svg {
+footer i {
   color: var(--slate-gray);
   transition: transform .1s ease-in-out;
 }
 
-footer svg:hover, footer svg:focus {
+footer i:hover, footer svg:focus {
   color: var(--madder-lake);
   transform: scale(1.1);
 }
