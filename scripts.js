@@ -84,12 +84,18 @@ gridContainer.addEventListener('mouseover', (e) => {
   const cell = e.target;
   if (state.pen == true && hoveredOverCell(cell)) {
     if (state.mode == 'Color') {
+      resetOpacity(cell);
       setBgColor(cell, state.color);
     } else if (state.mode == 'Erase') {
+      resetOpacity(cell);
       setBgColor(cell, 'none');
     } else if (state.mode == 'Rainbow') {
+      resetOpacity(cell);
       const randomColor = getRandomColor();
       setBgColor(cell, randomColor);
+    } else if (state.mode == 'Gray Scale') {
+      setBgColorToBlack(cell);
+      increaseOpacity(cell);
     }
   }
   
@@ -99,6 +105,24 @@ gridContainer.addEventListener('click', togglePen);
 
 function hoveredOverCell(cell) {
   return [...cell.classList].includes('cell');
+}
+
+function resetOpacity(el) {
+  el.style.opacity = '';
+}
+
+function increaseOpacity(el) {
+  if (el.style.opacity === '') {
+    el.style.opacity = 0.1;
+  } else if (parseFloat(el.style.opacity) < 1.0) {
+    el.style.opacity = parseFloat(el.style.opacity) + 0.1;
+  } 
+}
+
+function setBgColorToBlack(el) {
+  if (el.style.backgroundColor != 'black') {
+    setBgColor(el, 'black');
+  }
 }
 
 // State
