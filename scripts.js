@@ -81,11 +81,50 @@ createGrid(16);
 
 let mouseDown = false;
 
-document.addEventListener('mousedown', (e) => {
+gridContainer.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  // console.log('touch down');
+  mouseDown = true;
+});
+
+gridContainer.addEventListener('touchend', (e) => {
+  // console.log('touch up');
+  mouseDown = false;
+});
+
+gridContainer.addEventListener('touchmove', (e) => { 
+  // console.log('touchmove');
+  if (mouseDown) {
+    let x = e.targetTouches[0].clientX;
+    let y = e.targetTouches[0].clientY;
+    const cell = document.elementFromPoint(x,y);
+    if (cell && hoveredOverCell(cell)) {
+      if (state.mode == 'Color') {
+        resetOpacity(cell);
+        setBgColor(cell, state.color);
+      } else if (state.mode == 'Erase') {
+        resetOpacity(cell);
+        setBgColor(cell, 'none');
+      } else if (state.mode == 'Rainbow') {
+        resetOpacity(cell);
+        const randomColor = getRandomColor();
+        setBgColor(cell, randomColor);
+      } else if (state.mode == 'Gray Scale') {
+        setBgColorToBlack(cell);
+        increaseOpacity(cell);
+      }
+    }
+  }
+
+});
+
+gridContainer.addEventListener('touchmove', (e) => { });
+
+gridContainer.addEventListener('mousedown', (e) => {
   console.log('mouse down');
   mouseDown = true;
 });
-document.addEventListener('mouseup', (e) => {
+gridContainer.addEventListener('mouseup', (e) => {
   console.log('mouse up');
   mouseDown = false;
 });
@@ -95,6 +134,7 @@ document.addEventListener('mouseup', (e) => {
 gridContainer.addEventListener('mouseover', (e) => {
   if (mouseDown) {
     const cell = e.target;
+    console.log(cell);
     if (hoveredOverCell(cell)) {
       if (state.mode == 'Color') {
         resetOpacity(cell);
