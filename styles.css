@@ -37,6 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  gap: 10px;
 }
 
 footer {
@@ -68,6 +69,7 @@ footer i:hover, footer svg:focus {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 
@@ -84,7 +86,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .row {
-  width: 400px;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-grow: 1;
@@ -238,6 +240,8 @@ input[type=color]::-webkit-color-swatch-wrapper {
 @media screen and (min-width: 850px) {
   .flexContainer {
     flex-direction: row;
+    justify-content: center;
+    gap: 35px;
   }
   .controls {
     display: flex;
