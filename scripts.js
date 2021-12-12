@@ -79,29 +79,40 @@ function newGrid() {
 // Initialize grid
 createGrid(16);
 
+let mouseDown = false;
 
-gridContainer.addEventListener('mouseover', (e) => {
-  const cell = e.target;
-  if (state.pen == true && hoveredOverCell(cell)) {
-    if (state.mode == 'Color') {
-      resetOpacity(cell);
-      setBgColor(cell, state.color);
-    } else if (state.mode == 'Erase') {
-      resetOpacity(cell);
-      setBgColor(cell, 'none');
-    } else if (state.mode == 'Rainbow') {
-      resetOpacity(cell);
-      const randomColor = getRandomColor();
-      setBgColor(cell, randomColor);
-    } else if (state.mode == 'Gray Scale') {
-      setBgColorToBlack(cell);
-      increaseOpacity(cell);
-    }
-  }
-  
+document.addEventListener('mousedown', (e) => {
+  console.log('mouse down');
+  mouseDown = true;
+});
+document.addEventListener('mouseup', (e) => {
+  console.log('mouse up');
+  mouseDown = false;
 });
 
-gridContainer.addEventListener('click', togglePen);
+
+
+gridContainer.addEventListener('mouseover', (e) => {
+  if (mouseDown) {
+    const cell = e.target;
+    if (hoveredOverCell(cell)) {
+      if (state.mode == 'Color') {
+        resetOpacity(cell);
+        setBgColor(cell, state.color);
+      } else if (state.mode == 'Erase') {
+        resetOpacity(cell);
+        setBgColor(cell, 'none');
+      } else if (state.mode == 'Rainbow') {
+        resetOpacity(cell);
+        const randomColor = getRandomColor();
+        setBgColor(cell, randomColor);
+      } else if (state.mode == 'Gray Scale') {
+        setBgColorToBlack(cell);
+        increaseOpacity(cell);
+      }
+    }
+  }
+});
 
 function hoveredOverCell(cell) {
   return [...cell.classList].includes('cell');
@@ -127,7 +138,6 @@ function setBgColorToBlack(el) {
 
 // State
 let state = {
-  pen: true,
   mode: 'Color',
   color: ''
 }
@@ -135,24 +145,6 @@ let state = {
 function updateState(prop, val) {
   state[prop] = val;
   console.log(state);
-}
-
-function togglePen() {
-  if (state.pen) {
-    updateState('pen', false);
-  } else {
-    updateState('pen', true);
-  }
-  updatePenUi();
-}
-
-function updatePenUi() {
-  const penStatus = document.getElementById('penStatus');
-  if (state.pen) {
-    penStatus.textContent = 'on';
-  } else {
-    penStatus.textContent = 'off';
-  }
 }
 
 
